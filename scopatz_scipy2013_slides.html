@@ -1200,7 +1200,7 @@ div.output_prompt {
 
 <div style="text-align:center">Anthony Michael Scopatz</div>
 
-<div style="text-align:center">The University of Wisconsin-Madison, Engineering Physics</div>
+<div style="text-align:center">The University of Wisconsin-Madison, NumFOCUS</div>
 
 <div style="text-align:center">Austin, TX, June 26th, 2013</div>
 </div>
@@ -1356,6 +1356,54 @@ div.output_prompt {
 </section>
 <section>
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2>Dependent Types</h2>
+<p>Dependent types are parameterized by static values <em>or</em> types!</p>
+</div>
+<div class="fragment text_cell_render border-box-sizing rendered_html">
+<p>These are used to represent templated types in C++.</p>
+</div>
+<div class="fragment text_cell_render border-box-sizing rendered_html">
+<p>They are spelled with <code>tuple</code>s.</p>
+</div>
+<div class="fragment" class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">In&nbsp;[53]:</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">set_of_strings</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;set&#39;</span><span class="p">,</span> <span class="s">&#39;str&#39;</span><span class="p">)</span>
+<span class="n">map_int_double</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;map&#39;</span><span class="p">,</span> <span class="s">&#39;int32&#39;</span><span class="p">,</span> <span class="s">&#39;float64&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+</section>
+<section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Refined Types</h2>
+<p>Refined types are defined such that all of their elements are subset of another type.  </p>
+</div>
+<div class="fragment text_cell_render border-box-sizing rendered_html">
+<p>They are specified by the refinement type name, the super type name, and a predicate.</p>
+</div>
+<div class="fragment text_cell_render border-box-sizing rendered_html">
+<p><strong>Examples:</strong></p>
+<ul>
+<li>Even integers are a refinement of <code>int32</code></li>
+</ul>
+</div>
+<div class="fragment text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Strings which begin with "A" are a refinement of <code>str</code></li>
+</ul>
+</div>
+<div class="fragment text_cell_render border-box-sizing rendered_html">
+<ul>
+<li><code>set(["Awesome", "As", "Anthony"])</code> is a refinement of "A" strings.</li>
+</ul>
+</div>
+</section>
+<section>
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2>Questions</h2>
 <div style="text-align:center;"><img src="http://24.media.tumblr.com/tumblr_m1rk6gkLao1r38bjro10_500.jpg" width="80%" /></div>
 </div>
@@ -1369,7 +1417,7 @@ div.output_prompt {
 </div>
 <div style=display:none class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[47]:</div>
+<div class="prompt input_prompt">In&nbsp;[57]:</div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="o">!</span>make
 </pre></div>
