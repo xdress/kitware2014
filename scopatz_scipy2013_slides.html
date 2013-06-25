@@ -1206,7 +1206,7 @@ div.output_prompt {
 </div>
 <div style=display:none class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[45]:</div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
@@ -1215,6 +1215,7 @@ div.output_prompt {
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">htmltable</span>
+<span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
 </pre></div>
 
 </div>
@@ -1223,6 +1224,8 @@ div.output_prompt {
 <div style=display:none class="text_cell_render border-box-sizing rendered_html">
 <h2>Cheat Sheet</h2>
 <p><strong>Center:</strong>  <code>&lt;div style="text-align:center;"&gt;&lt;/div&gt;</code></p>
+<p><strong>Right:</strong>   <code>&lt;div style="text-align:right;"&gt;&lt;/div&gt;</code></p>
+<p><strong>Center H3:</strong>  <code>&lt;div style="text-align:center;"&gt;&lt;h3&gt;&lt;/h3&gt;&lt;/div&gt;</code></p>
 </div>
 </section>
 <section>
@@ -1260,6 +1263,99 @@ div.output_prompt {
 </section>
 <section>
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2>Type System</h2>
+<ul>
+<li>Since we are not doing any parsing or compiling, the type system doesn't need to know the concrete size of any types.</li>
+</ul>
+</div>
+<div class="fragment text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Rather the type system is a convient, consistent, and complete way to <em>spell</em> type names!</li>
+</ul>
+</div>
+<div class="fragment text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>
+<p>Type names are composed of immutable Python types:</p>
+<ul>
+<li><code>str</code></li>
+<li><code>tuple</code></li>
+<li><code>int</code></li>
+<li><code>lambda</code></li>
+<li><code>TypeMatcher</code></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="fragment text_cell_render border-box-sizing rendered_html">
+<div style="text-align:right;"><img src="http://img.photobucket.com/albums/v647/RandomElite/ZOMG.jpg" width="75" /></div>
+</div>
+</section>
+<section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Kinds of Types</h2>
+<p>As a brief diversion into type theory, xdress supports:</p>
+<div style="text-align:center;"><h3>Base Types</h3></div>
+
+<p><br/></p>
+<div style="text-align:center;"><h3>Dependent Types</h3></div>
+
+<p><br/></p>
+<div style="text-align:center;"><h3>Refinement Types</h3></div>
+
+<p><br/></p>
+</div>
+</section>
+<section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>Base Types</h2>
+<p>Base types are the normal primitive types that we all know and lovehate.  </p>
+<p>These are represented by <code>str</code>.  </p>
+<p>Classes and structs also become base types.</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">xdress.typesystem</span> <span class="kn">as</span> <span class="nn">ts</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">base_types</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+<div class="vbox output_wrapper">
+<div class="output vbox">
+<div class="hbox output_area">
+<div class="prompt output_prompt"></div>
+<div class="output_subarea output_stream output_stdout">
+<pre>set([&apos;bool&apos;,
+     &apos;char&apos;,
+     &apos;complex128&apos;,
+     &apos;file&apos;,
+     &apos;float128&apos;,
+     &apos;float32&apos;,
+     &apos;float64&apos;,
+     &apos;int128&apos;,
+     &apos;int16&apos;,
+     &apos;int32&apos;,
+     &apos;int64&apos;,
+     &apos;str&apos;,
+     &apos;type&apos;,
+     &apos;uchar&apos;,
+     &apos;uint128&apos;,
+     &apos;uint16&apos;,
+     &apos;uint32&apos;,
+     &apos;uint64&apos;,
+     &apos;void&apos;])
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section>
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2>Questions</h2>
 <div style="text-align:center;"><img src="http://24.media.tumblr.com/tumblr_m1rk6gkLao1r38bjro10_500.jpg" width="80%" /></div>
 </div>
@@ -1273,7 +1369,7 @@ div.output_prompt {
 </div>
 <div style=display:none class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="o">!</span>make
 </pre></div>
