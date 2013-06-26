@@ -1923,7 +1923,7 @@ def func(self, *args, **kwargs):
 <p>Currently this only includes <code>map</code>, <code>set</code>, and <code>vector</code> but others would be trivial to add.</p>
 </div>
 <div class="fragment text_cell_render border-box-sizing rendered_html">
-<h3>xdressrc.py</h3>
+<h3>xdressrc.py (what the user writes)</h3>
 </div>
 <div class="fragment" class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -1960,7 +1960,7 @@ def func(self, *args, **kwargs):
 </section>
 <section>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2>C++ <code>std::map&lt;T, U&gt;</code> Wrappers</h2>
+<h2><code>std::map&lt;T, U&gt;</code> Wrappers</h2>
 </div>
 <div style=display:none class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
@@ -2048,7 +2048,40 @@ scores is mapping: True
 </section>
 <section>
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2>C++ <code>std::vector&lt;T&gt;</code> Wrappers Are NumPy Arrays!</h2>
+<h2>Bad Types Fail</h2>
+<p><br /><br /></p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">scores</span><span class="p">[</span><span class="s">&quot;Hoover&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.92e3</span><span class="p">,</span> <span class="s">&quot;hell0&quot;</span><span class="p">]</span>
+</pre></div>
+
+</div>
+</div>
+<div class="vbox output_wrapper">
+<div class="output vbox">
+<div class="hbox output_area">
+<div class="prompt output_prompt"></div>
+<div class="output_subarea output_pyerr">
+<pre><span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-40-117d2e157c41&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">----&gt; 1</span><span class="ansiyellow"> </span>scores<span class="ansiyellow">[</span><span class="ansiblue">&quot;Hoover&quot;</span><span class="ansiyellow">]</span> <span class="ansiyellow">=</span> <span class="ansiyellow">[</span><span class="ansicyan">1.92e3</span><span class="ansiyellow">,</span> <span class="ansiblue">&quot;hell0&quot;</span><span class="ansiyellow">]</span><span class="ansiyellow"></span>
+
+<span class="ansigreen">/home/scopatz/xdress/tests/build/build/lib.linux-x86_64-2.7/xdtest/xdstlc.so</span> in <span class="ansicyan">xdtest.xdstlc._MapStrInt.__setitem__ (/home/scopatz/xdress/tests/build/xdtest/xdstlc.cxx:20723)</span><span class="ansiblue">()</span>
+
+<span class="ansired">TypeError</span>: an integer is required</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2><code>std::vector&lt;T&gt;</code> Wrappers Are NumPy Arrays!</h2>
 </div>
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Vectors are wrapped by providing a 1D numpy view into the vector's memory with a custom dtype that represents the template type.</p>
@@ -2077,9 +2110,9 @@ Is dtype? True
 </div>
 </div>
 <div class="fragment text_cell_render border-box-sizing rendered_html">
-<h4>Numpy array of C++ <code>std::string</code>s</h4>
+<p><br /><strong>Numpy array of <code>std::string</code>s</strong></p>
 </div>
-<div class="cell border-box-sizing code_cell vbox">
+<div class="fragment" class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
 <div class="prompt input_prompt">In&nbsp;[27]:</div>
 <div class="input_area box-flex1">
@@ -2099,15 +2132,123 @@ Is dtype? True
 </div>
 </div>
 </div>
+<div class="fragment text_cell_render border-box-sizing rendered_html">
+<p><br /><strong>And now for something truly evil...</strong></p>
+</div>
+<div class="fragment" class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">In&nbsp;[29]:</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">65</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">496</span><span class="p">,</span> <span class="mi">8128</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">conts</span><span class="o">.</span><span class="n">xd_vector_double</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+<div class="vbox output_wrapper">
+<div class="output vbox">
+<div class="hbox output_area">
+<div class="prompt output_prompt">Out[29]:</div>
+<div class="output_subarea output_pyout">
+<pre>array([array([ 42.,  65.]),
+       array([  6.00000000e+00,   2.80000000e+01,   4.96000000e+02,
+         8.12800000e+03])], dtype=&apos;xd_vector_double&apos;)</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section>
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2>C++ Standard Library Container Wrappers</h2>
+<p>All of these wrappers are composable with other types, including classes and structs wrapped from <code>cythongen</code>.</p>
+<p><br /><br /></p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">In&nbsp;[34]:</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="n">yolo</span> <span class="o">=</span> <span class="n">conts</span><span class="o">.</span><span class="n">MapIntMapIntVectorBool</span><span class="p">({</span>
+    <span class="mi">42</span><span class="p">:</span> <span class="p">{</span><span class="mi">65</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">]},</span> 
+    <span class="mi">18</span><span class="p">:</span> <span class="p">{},</span> 
+    <span class="mi">2040</span><span class="p">:</span> <span class="p">{</span><span class="mi">3</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;yes&quot;</span><span class="p">,</span> <span class="s">&quot;no&quot;</span><span class="p">]}})</span>
+<span class="k">print</span> <span class="n">yolo</span>
+<span class="k">print</span> <span class="s">&quot;Value is MapIntVectorBool?&quot;</span><span class="p">,</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">yolo</span><span class="p">[</span><span class="mi">42</span><span class="p">],</span> <span class="n">conts</span><span class="o">.</span><span class="n">MapIntVectorBool</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+<div class="vbox output_wrapper">
+<div class="output vbox">
+<div class="hbox output_area">
+<div class="prompt output_prompt"></div>
+<div class="output_subarea output_stream output_stdout">
+<pre>{18: {}, 42: {65: array([ True, False, False,  True], dtype=bool)}, 2040: {3: array([ True,  True], dtype=bool)}}
+Value is MapIntVectorBool? True
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
 <section>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2>Plugins</h2>
+<p>XDress has a plugin architeture which makes writing your own code generators super easy!</p>
+</div>
+<div class="cell border-box-sizing code_cell vbox">
+<div class="input hbox">
+<div class="prompt input_prompt">In&nbsp;[46]:</div>
+<div class="input_area box-flex1">
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">xdress.plugins</span> <span class="kn">import</span> <span class="n">Plugin</span>
+
+<span class="k">class</span> <span class="nc">XDressPlugin</span><span class="p">(</span><span class="n">Plugin</span><span class="p">):</span>
+    <span class="n">requires</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;xdress.base&#39;</span><span class="p">,)</span>
+
+    <span class="n">defaultrc</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;choices&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;J. Edgar Hoover&#39;</span><span class="p">,</span> <span class="s">&#39;Hua Mulan&#39;</span><span class="p">,</span> <span class="s">&#39;Leslie&#39;</span><span class="p">],</span>
+                 <span class="s">&#39;answer&#39;</span><span class="p">:</span> <span class="s">&#39;Joan of Arc&#39;</span><span class="p">,}</span>
+        
+    <span class="k">def</span> <span class="nf">update_argparser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parser</span><span class="p">):</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&#39;-c&#39;</span><span class="p">,</span> <span class="s">&#39;--choices&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&#39;store&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">&#39;choices&#39;</span><span class="p">,</span>
+                            <span class="n">nargs</span><span class="o">=</span><span class="s">&quot;+&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;famous people chocies&quot;</span><span class="p">)</span>
+        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&#39;-a&#39;</span><span class="p">,</span> <span class="s">&#39;--answer&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&#39;store&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">&#39;answer&#39;</span><span class="p">,</span>
+                            <span class="n">help</span><span class="o">=</span><span class="s">&quot;person who was executed&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rc</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s">&#39;Joan of Arc&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">rc</span><span class="o">.</span><span class="n">choices</span><span class="p">:</span>
+            <span class="n">rc</span><span class="o">.</span><span class="n">choices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;Joan of Arc&#39;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rc</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">rc</span><span class="o">.</span><span class="n">answer</span> <span class="o">==</span> <span class="s">&#39;Joan of Arc&#39;</span><span class="p">:</span>
+            <span class="k">print</span><span class="p">(</span><span class="s">&#39;Joan has met an untimely demise!&#39;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;Joan of Arc was executed, not &#39;</span> <span class="o">+</span> <span class="n">rc</span><span class="o">.</span><span class="n">answer</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">report_debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rc</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&quot;the possible choices were &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rc</span><span class="o">.</span><span class="n">choices</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
 </div>
 </section>
 <section>
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2>Cool Ideas</h2>
+<div style="text-align:center;"><h3>Fix/Rewrite the Clang AST Python Bindings</h3></div>
+
+<p><br/></p>
+</div>
+<div class="fragment text_cell_render border-box-sizing rendered_html">
+<div style="text-align:center;"><h3>Create a Better (Than RelaxNG) Validation Engine</h3></div>
+
+<p><br/></p>
+</div>
+<div class="fragment text_cell_render border-box-sizing rendered_html">
+<div style="text-align:center;"><h3>Wrap HDF5 - <a href="https://github.com/scopatz/cya">cya project</a></h3></div>
+
+<p><br/></p>
 </div>
 </section>
 <section>
@@ -2115,17 +2256,9 @@ Is dtype? True
 <h2>Questions</h2>
 <div style="text-align:center;"><img src="http://24.media.tumblr.com/tumblr_m1rk6gkLao1r38bjro10_500.jpg" width="80%" /></div>
 </div>
-</section>
-<section>
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2>References</h2>
-<ol>
-<li>Anthony Scopatz, "Erichment: M* vs Flowrate", URL: http://pynesim.org/gallery/enrichment_mstar_vs_flowrate.html</li>
-</ol>
-</div>
 <div style=display:none class="cell border-box-sizing code_cell vbox">
 <div class="input hbox">
-<div class="prompt input_prompt">In&nbsp;[22]:</div>
+<div class="prompt input_prompt">In&nbsp;[47]:</div>
 <div class="input_area box-flex1">
 <div class="highlight"><pre><span class="o">!</span>make
 </pre></div>
