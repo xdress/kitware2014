@@ -1,2 +1,3 @@
 jehsrc/xdress_extra_types.h
 *.pyc
+.ipynb_checkpoints
