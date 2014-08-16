@@ -1882,7 +1882,7 @@ The interface that is created should be beautiful, or at least not ugly.
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="text-align:center"><h1>
-Let's Talk About Parsers
+Let's Talk About Parsers!
 </h1></div>
 </div>
 </div>
@@ -2117,11 +2117,158 @@ Let's Talk About Parsers
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>All kudos got to <a href="http://naml.us/~irving/">Geoffery Irving</a> for getting this to work.</p>
+<p>All kudos go to <a href="http://naml.us/~irving/">Geoffery Irving</a> here!</p>
 </div>
 </div>
 </div>
     </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="parsers">Parsers</h2>
+<p>Once we have loaded an AST, there are two things that xdress can do:</p>
+</div>
+</div>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Search and categorize symbols accoring to whether they are variables, functions, or classes.</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Create a canonical, language-independent descriptions of the API.</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this sense, xdress is yet-another-API-API.</p>
+</div>
+</div>
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="parsers-major-point">Parsers: Major Point!</h2>
+<div style="text-align:center">
+<strong>XDress only cares about APIs.</strong>
+</div>
+</div>
+</div>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The implementation does not matter.</p>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In this context, Clang and pycparser do too much.</p>
+</div>
+</div>
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="api-descriptions">API Descriptions</h2>
+<p><em>So how do the API descriptions work?</em></p>
+</div>
+</div>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>To keep them as a portable as possible, they are nothing fancy.</p>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In memory descriptions (<em>desc</em>) are just Python strings, ints, dicts, tuples, lists, and other built-in types. They can easily be translated into a JSON format.</p>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>They heavy lifting of the API decsriptions is done by the type system.</p>
+</div>
+</div>
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="text-align:center"><h1>
+Stay Awake Durring Type Systems!
+</h1></div>
+</div>
+</div>
+</div></section>
     </section><section>
     <section>
     
