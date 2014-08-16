@@ -1739,7 +1739,7 @@ Clifton Park, August 20th, 2014
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[2]:
+In&nbsp;[1]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -1881,6 +1881,255 @@ The interface that is created should be beautiful, or at least not ugly.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<div style="text-align:center"><h1>
+Let's Talk About Parsers
+</h1></div>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="parsers">Parsers</h2>
+<p>Parsing is worse than hard, it is annoying!</p>
+</div>
+</div>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>XDress completely outsources the task of parsing source code to other projects. It mostly outsources the syntax tree too.</p>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Parses that XDress supports currently are:</p>
+<ul>
+<li>pycparser, for pure C-code</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>GCC-XML, for C++ code</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Clang 3.2+, for C and C++ code</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This tactic of relying on external parsers enables flexibility w.r.t. the source language.</p>
+</div>
+</div>
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="clang">Clang</h2>
+<p>Clang is the <em>preffered</em> parser.</p>
+</div>
+</div>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Gives us full C++11 support.</p>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is about 10x faster than GCC-XML.</p>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is more robust than pycparser, no need to call to an external cpp.</p>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It was also a huge pain to interface with!</p>
+</div>
+</div>
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="ideal-clang-stack">Ideal Clang Stack</h2>
+<div style="text-align:center;">
+<img src="clang-stack-ideal.svg" width="80%" />
+</div>
+</div>
+</div>
+</div><div style=display:none>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Created via <a href="http://interactive.blockdiag.com/?compression=deflate&amp;src=eJyr5lJQUHLOScxLV9Bw1tbWVFLQtVNQyslMSoaKQUUKKhFiAZUlGfl5UAnH4BAla65aALXWE3g">this link</a></p>
+</div>
+</div>
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="actual-clang-stack">Actual Clang Stack</h2>
+<div style="text-align:center;">
+<img src="clang-stack-actual.svg" width="80%" />
+</div>
+</div>
+</div>
+</div><div style=display:none>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Created via <a href="http://interactive.blockdiag.com/?compression=deflate&amp;src=eJyr5lJQUHLOScxLV9Bw1tbWVFLQtVNQyslMSoaKQUUKKhFiAZUlGfl5UAnH4BAlhejk_Jz8IgVbhaLUlFhrrEZWpBSlFhcrwExBFtRDEgEZZ81VCwBU-ipV">this link</a></p>
+</div>
+</div>
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="clang">Clang</h2>
+<p>This really works!</p>
+</div>
+</div>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As much as we were forced to fork libclang, we are very interested in either</p>
+<ul>
+<li>breaking this fork into a separate project or repo, or</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>getting our changes in upstream clang.</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>All kudos got to <a href="http://naml.us/~irving/">Geoffery Irving</a> for getting this to work.</p>
+</div>
+</div>
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="type-system">Type System</h2>
 <ul>
 <li>Since we are not doing any parsing or compiling, the type system doesn't need to know the concrete size of any types.</li>
@@ -1916,19 +2165,6 @@ The interface that is created should be beautiful, or at least not ugly.
 <li><code>TypeMatcher</code></li>
 </ul></li>
 </ul>
-</div>
-</div>
-</div>
-    </div><div class="fragment">
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<div style="text-align:right;">
-<img src="zomg.jpg" width="75" /><br /><b>zOMG!</b>
-</div>
 </div>
 </div>
 </div>
@@ -1976,11 +2212,12 @@ Refinement Types
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[3]:
+In&nbsp;[4]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">xdress.typesystem</span> <span class="kn">as</span> <span class="nn">ts</span>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">xdress.types.system</span> <span class="kn">import</span> <span class="n">TypeSystem</span>
+<span class="n">ts</span> <span class="o">=</span> <span class="n">TypeSystem</span><span class="p">()</span>
 <span class="n">pprint</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">base_types</span><span class="p">)</span>
 </pre></div>
 
@@ -1995,25 +2232,26 @@ In&nbsp;[3]:
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-set([&apos;bool&apos;,
-     &apos;char&apos;,
-     &apos;complex128&apos;,
-     &apos;file&apos;,
-     &apos;float128&apos;,
-     &apos;float32&apos;,
-     &apos;float64&apos;,
-     &apos;int128&apos;,
-     &apos;int16&apos;,
-     &apos;int32&apos;,
-     &apos;int64&apos;,
-     &apos;str&apos;,
-     &apos;type&apos;,
-     &apos;uchar&apos;,
-     &apos;uint128&apos;,
-     &apos;uint16&apos;,
-     &apos;uint32&apos;,
-     &apos;uint64&apos;,
-     &apos;void&apos;])
+{&apos;bool&apos;,
+ &apos;char&apos;,
+ &apos;complex128&apos;,
+ &apos;exception&apos;,
+ &apos;file&apos;,
+ &apos;float128&apos;,
+ &apos;float32&apos;,
+ &apos;float64&apos;,
+ &apos;int128&apos;,
+ &apos;int16&apos;,
+ &apos;int32&apos;,
+ &apos;int64&apos;,
+ &apos;str&apos;,
+ &apos;type&apos;,
+ &apos;uchar&apos;,
+ &apos;uint128&apos;,
+ &apos;uint16&apos;,
+ &apos;uint32&apos;,
+ &apos;uint64&apos;,
+ &apos;void&apos;}
 
 </pre>
 </div>
