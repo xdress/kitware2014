@@ -2395,7 +2395,7 @@ Refinement Types
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[13]:
+In&nbsp;[2]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3029,9 +3029,23 @@ Example Time!
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="cythongen-via-hoover-example"><code>cythongen</code> via Hoover Example</h2>
 <h3 id="jehsrchoover.h">jehsrc/hoover.h</h3>
-<p><code>c++ #if !defined(HOOVER) #define HOOVER namespace hoover { class A {  public:    float a;    double power(int n=1); };}; #endif</code></p>
+<pre class="sourceCode CPP"><code class="sourceCode cpp"><span class="ot">#if !defined(HOOVER)</span>
+<span class="ot">#define HOOVER</span>
+<span class="kw">namespace</span> hoover {
+<span class="kw">class</span> A {
+ <span class="kw">public</span>:
+   <span class="dt">float</span> a;
+   <span class="dt">double</span> power(<span class="dt">int</span> n=<span class="dv">1</span>);
+};};
+<span class="ot">#endif</span></code></pre>
 <h3 id="jehsrchoover.cpp">jehsrc/hoover.cpp</h3>
-<p><code>c++ #include &quot;hoover.h&quot; double hoover::A::power(int n){   int i = 1;   double val = a;   while (i &lt; n){val *= a;};     return val; };</code></p>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="ot">#include &quot;hoover.h&quot;</span>
+<span class="dt">double</span> hoover::A::power(<span class="dt">int</span> n){
+  <span class="dt">int</span> i = <span class="dv">1</span>;
+  <span class="dt">double</span> val = a;
+  <span class="kw">while</span> (i &lt; n){val *= a;};
+    <span class="kw">return</span> val;
+};</code></pre>
 </div>
 </div>
 </div><div style=display:none>
@@ -3039,7 +3053,7 @@ Example Time!
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[14]:
+In&nbsp;[6]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3062,14 +3076,11 @@ In&nbsp;[14]:
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="hoover-example">Hoover Example</h2>
 <h3 id="jeh_xdressrc.py">jeh_xdressrc.py</h3>
-<pre><code>package = &#39;jedgar&#39;     # top-level python package name
-packagedir = &#39;jedgar&#39;  # location of the python package
-sourcedir = &#39;jehsrc&#39;   # location of C/C++ source
-builddir = &#39;jehbuild&#39;  # build and temp dir
+<pre class="sourceCode python"><code class="sourceCode python">package = <span class="st">&#39;jedgar&#39;</span>      <span class="co"># top-level python package name</span>
+packagedir = <span class="st">&#39;jedgar&#39;</span>   <span class="co"># location of the python package</span>
+builddir = <span class="st">&#39;jehbuild&#39;</span>
 
-classes = [
-    (&#39;A&#39;, &#39;hoover&#39;),
-    ]</code></pre>
+classes = [(<span class="st">&#39;A&#39;</span>, <span class="st">&#39;jehsrc/hoover.*&#39;</span>)]</code></pre>
 </div>
 </div>
 </div><div class="fragment">
@@ -3094,7 +3105,7 @@ In&nbsp;[7]:
     <div class="input_area">
 <div class="highlight"><pre>%%bash
 xdress --rc jeh_xdressrc.py
-python jeh_setup.py build &gt; /dev/null 2&gt;&amp;1
+python3 jeh_setup.py build &gt; /dev/null 2&gt;&amp;1
 </pre></div>
 
 </div>
@@ -3108,16 +3119,16 @@ python jeh_setup.py build &gt; /dev/null 2&gt;&amp;1
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-WARNING: DeprecationWarning: run control parameter &apos;sourcedir&apos; has been removed in favor of new apiname semantics
-
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>
-ERROR: no valid language was found.
+autoall: discovering API names
+autoall: no API names to discover!
+autodescribe: registering A
+dtypes: registering numpy dtypes
+stlwrap: registering C++ standard library types
+autodescribe: scraping C/C++ APIs from source
+autodescribe: describing A
+cythongen: creating C/C++ API wrappers
+extratypes: generating extra type header &amp; source files for xdress
+dtypes: generating numpy dtype wrappers
 
 </pre>
 </div>
@@ -3138,7 +3149,8 @@ ERROR: no valid language was found.
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="hoover-example">Hoover Example</h2>
 <h3 id="jedgarhoover.pyx">jedgar/hoover.pyx</h3>
-<pre><code>from libc.stdlib cimport free
+<p><br/></p>
+<pre class="cython"><code>from libc.stdlib cimport free
 
 cdef class A:
     &quot;&quot;&quot;no docstring for A, please file a bug report!&quot;&quot;&quot;
@@ -3148,12 +3160,13 @@ cdef class A:
         self._inst = NULL
         self._free_inst = True
 
-    def __init__(self):
-        &quot;&quot;&quot;A(self)&quot;&quot;&quot;
+    def __init__(self, ):
+        &quot;&quot;&quot;A(self, )
+        &quot;&quot;&quot;
         self._inst = new cpp_hoover.A()
-
+    
     def __dealloc__(self):
-        if self._free_inst:
+        if self._free_inst and self._inst is not NULL:
             free(self._inst)
 
     # attributes
@@ -3161,10 +3174,10 @@ cdef class A:
         &quot;&quot;&quot;no docstring for a, please file a bug report!&quot;&quot;&quot;
         def __get__(self):
             return float((&lt;cpp_hoover.A *&gt; self._inst).a)
-
+    
         def __set__(self, value):
             (&lt;cpp_hoover.A *&gt; self._inst).a = &lt;float&gt; value
-
+    
     # methods
     def power(self, n=1):
         &quot;&quot;&quot;power(self, n=1)
@@ -3183,7 +3196,9 @@ In&nbsp;[8]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">builddir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s">&#39;build/lib.linux-x86_64-2.7/&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">builddir</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s">&#39;build&#39;</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="s">&#39;build&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;lib.&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="n">d</span><span class="o">.</span><span class="n">endswith</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">version</span><span class="p">[:</span><span class="mi">3</span><span class="p">])]</span>
+<span class="n">builddir</span> <span class="o">=</span> <span class="n">builddir</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">builddir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">builddir</span><span class="p">)</span>
 <span class="k">if</span> <span class="n">builddir</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">builddir</span><span class="p">)</span>
 </pre></div>
@@ -3228,20 +3243,16 @@ In&nbsp;[9]:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_pyerr">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">ImportError</span>                               Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-9-1320bea6e15f&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">----&gt; 1</span><span class="ansiyellow"> </span><span class="ansigreen">from</span> jedgar<span class="ansiyellow">.</span>hoover <span class="ansigreen">import</span> A<span class="ansiyellow"></span>
-<span class="ansigreen">      2</span> <span class="ansiyellow"></span>
-<span class="ansigreen">      3</span> a <span class="ansiyellow">=</span> A<span class="ansiyellow">(</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">      4</span> a<span class="ansiyellow">.</span>a <span class="ansiyellow">=</span> <span class="ansicyan">10</span><span class="ansiyellow"></span>
-<span class="ansigreen">      5</span> a<span class="ansiyellow">.</span>power<span class="ansiyellow">(</span><span class="ansicyan">42</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
+<div class="output_area"><div class="prompt output_prompt">
+    Out[9]:</div>
 
-<span class="ansired">ImportError</span>: No module named &apos;jedgar.hoover&apos;</pre>
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+9.999999999999999e+41
+</pre>
 </div>
+
 </div>
 
 </div>
@@ -3301,7 +3312,7 @@ In&nbsp;[9]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[10]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3312,6 +3323,27 @@ In&nbsp;[]:
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_pyerr">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">ImportError</span>                               Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-10-00054b46a171&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">      2</span> <span class="ansigreen">if</span> d <span class="ansigreen">not</span> <span class="ansigreen">in</span> sys<span class="ansiyellow">.</span>path<span class="ansiyellow">:</span><span class="ansiyellow"></span>
+<span class="ansigreen">      3</span>     sys<span class="ansiyellow">.</span>path<span class="ansiyellow">.</span>insert<span class="ansiyellow">(</span><span class="ansicyan">0</span><span class="ansiyellow">,</span> d<span class="ansiyellow">)</span><span class="ansiyellow"></span>
+<span class="ansigreen">----&gt; 4</span><span class="ansiyellow"> </span><span class="ansigreen">import</span> xdtest<span class="ansiyellow">.</span>pydevice <span class="ansigreen">as</span> mod<span class="ansiyellow"></span>
+
+<span class="ansired">ImportError</span>: No module named &apos;xdtest&apos;</pre>
+</div>
+</div>
+
 </div>
 </div>
 
