@@ -3888,7 +3888,7 @@ def func(self, *args, **kwargs):
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Currently this only includes <code>map</code>, <code>set</code>, and <code>vector</code> but others would be trivial to add.</p>
+<p>Currently this includes <code>pair</code>, <code>map</code>, <code>set</code>, and <code>vector</code>. Others are <del>trivial</del> easy enough to add.</p>
 </div>
 </div>
 </div>
@@ -3900,47 +3900,24 @@ def func(self, *args, **kwargs):
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h3 id="xdressrc.py-what-the-user-writes">xdressrc.py (what the user writes)</h3>
+<pre class="sourceCode python"><code class="sourceCode python">stlcontainers_module = <span class="st">&#39;conts&#39;</span>
+stlcontainers = [
+    (<span class="st">&#39;vector&#39;</span>, <span class="st">&#39;float64&#39;</span>),
+    (<span class="st">&#39;vector&#39;</span>, <span class="st">&#39;str&#39;</span>),
+    (<span class="st">&#39;vector&#39;</span>, <span class="st">&#39;int32&#39;</span>),
+    (<span class="st">&#39;vector&#39;</span>, (<span class="st">&#39;vector&#39;</span>, <span class="st">&#39;float64&#39;</span>)),
+    (<span class="st">&#39;set&#39;</span>, <span class="st">&#39;int&#39;</span>),
+    (<span class="st">&#39;map&#39;</span>, <span class="st">&#39;str&#39;</span>, <span class="st">&#39;str&#39;</span>),
+    (<span class="st">&#39;map&#39;</span>, <span class="st">&#39;str&#39;</span>, <span class="st">&#39;int&#39;</span>),
+    (<span class="st">&#39;map&#39;</span>, <span class="st">&#39;str&#39;</span>, <span class="st">&#39;float&#39;</span>),
+    (<span class="st">&#39;map&#39;</span>, <span class="st">&#39;int&#39;</span>, <span class="st">&#39;int&#39;</span>),
+    (<span class="st">&#39;map&#39;</span>, <span class="st">&#39;int&#39;</span>, <span class="st">&#39;float&#39;</span>),
+    (<span class="st">&#39;map&#39;</span>, <span class="st">&#39;int&#39;</span>, (<span class="st">&#39;vector&#39;</span>, <span class="st">&#39;str&#39;</span>)),
+    (<span class="st">&#39;map&#39;</span>, <span class="st">&#39;int&#39;</span>, (<span class="st">&#39;vector&#39;</span>, <span class="st">&#39;float&#39;</span>)),
+    (<span class="st">&#39;map&#39;</span>, <span class="st">&#39;int&#39;</span>, (<span class="st">&#39;map&#39;</span>, <span class="st">&#39;int&#39;</span>, (<span class="st">&#39;vector&#39;</span>, <span class="st">&#39;float&#39;</span>))),
+    ]</code></pre>
 </div>
 </div>
-</div>
-    </div><div class="fragment">
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">stlcontainers_module</span> <span class="o">=</span> <span class="s">&#39;conts&#39;</span>
-<span class="n">stlcontainers</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="p">(</span><span class="s">&#39;vector&#39;</span><span class="p">,</span> <span class="s">&#39;float64&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;vector&#39;</span><span class="p">,</span> <span class="s">&#39;str&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;vector&#39;</span><span class="p">,</span> <span class="s">&#39;int32&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;vector&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;vector&#39;</span><span class="p">,</span> <span class="s">&#39;float64&#39;</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s">&#39;set&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;set&#39;</span><span class="p">,</span> <span class="s">&#39;str&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;set&#39;</span><span class="p">,</span> <span class="s">&#39;char&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;map&#39;</span><span class="p">,</span> <span class="s">&#39;str&#39;</span><span class="p">,</span> <span class="s">&#39;str&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;map&#39;</span><span class="p">,</span> <span class="s">&#39;str&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;map&#39;</span><span class="p">,</span> <span class="s">&#39;str&#39;</span><span class="p">,</span> <span class="s">&#39;float&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;map&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;map&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">,</span> <span class="s">&#39;float&#39;</span><span class="p">),</span>
-    <span class="p">(</span><span class="s">&#39;map&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;set&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s">&#39;map&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;set&#39;</span><span class="p">,</span> <span class="s">&#39;str&#39;</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s">&#39;map&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;vector&#39;</span><span class="p">,</span> <span class="s">&#39;str&#39;</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s">&#39;map&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;vector&#39;</span><span class="p">,</span> <span class="s">&#39;float&#39;</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s">&#39;map&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;vector&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;vector&#39;</span><span class="p">,</span> <span class="s">&#39;float64&#39;</span><span class="p">))),</span>
-    <span class="p">(</span><span class="s">&#39;map&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;map&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">,</span> <span class="s">&#39;char&#39;</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s">&#39;map&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;map&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">,</span> <span class="s">&#39;float&#39;</span><span class="p">)),</span>
-    <span class="p">(</span><span class="s">&#39;map&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;map&#39;</span><span class="p">,</span> <span class="s">&#39;int&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;vector&#39;</span><span class="p">,</span> <span class="s">&#39;float&#39;</span><span class="p">))),</span>
-    <span class="p">]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
 </div>
     </div></section>
     </section><section>
