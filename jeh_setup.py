@@ -5,7 +5,8 @@ from Cython.Distutils import build_ext
 
 import numpy as np
 
-incdirs = [os.path.join(os.getcwd(), 'jehsrc'), np.get_include()]
+cwd = os.getcwd()
+incdirs = [cwd, os.path.join(cwd, 'jehsrc'), np.get_include()]
 
 ext_modules = [
     Extension("jedgar.hoover", ['jehsrc/hoover.cpp', "jedgar/hoover.pyx", ],

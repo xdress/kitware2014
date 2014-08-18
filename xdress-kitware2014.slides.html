@@ -2831,6 +2831,7 @@ Talkig 'Bout My Code Generation!
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="cython-example">Cython Example</h2>
+<p><br/></p>
 <pre class="cython"><code>cdef class Rectangle:
     cdef int x0, y0
     cdef int x1, y1
@@ -2860,6 +2861,154 @@ def rect_area(x0, y0, x1, y1):
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="cython-is-fast">Cython is Fast</h2>
+<p>Cython can be thought of as a bonus optimization level.</p>
+</div>
+</div>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>For pure Python, speedups of 3x-4x are common.</p>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The more type information you add, the faster it goes. 1000x+ is easy to achieve.</p>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Lest you think that this is because &quot;Python is Slow&quot;, Cython can be faster than idiomatic C in certain cases.</p>
+</div>
+</div>
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="some-cython-optimizations">(Some) Cython Optimizations</h2>
+<ul>
+<li>Loops are in C, not Python</li>
+</ul>
+</div>
+</div>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>if-else statements become switch-case</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Avoide function calls when a jump will do</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>OpenMP integration</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Python &amp; NumPy C-API aware</li>
+</ul>
+</div>
+</div>
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="cython">Cython</h2>
+<p>Cython eats the lunches of ctypes and Boost.Python,</p>
+</div>
+</div>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>And faster than SWIG can.</p>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>But we are really here to talk about xdress...</p>
+</div>
+</div>
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <div style="text-align:center"><h1>
 Example Time!
 </h1></div>
@@ -2880,23 +3029,9 @@ Example Time!
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="cythongen-via-hoover-example"><code>cythongen</code> via Hoover Example</h2>
 <h3 id="jehsrchoover.h">jehsrc/hoover.h</h3>
-<pre><code>#if !defined(HOOVER)
-#define HOOVER
-namespace hoover {
-class A {
-public:
-  float a;
-  double power(int n=1);
-};};
-#endif</code></pre>
+<p><code>c++ #if !defined(HOOVER) #define HOOVER namespace hoover { class A {  public:    float a;    double power(int n=1); };}; #endif</code></p>
 <h3 id="jehsrchoover.cpp">jehsrc/hoover.cpp</h3>
-<pre><code>#include &quot;hoover.h&quot;
-double hoover::A::power(int n){
-  int i = 1;
-  double val = a;
-  while (i &lt; n){val *= a;};
-  return val;
-};</code></pre>
+<p><code>c++ #include &quot;hoover.h&quot; double hoover::A::power(int n){   int i = 1;   double val = a;   while (i &lt; n){val *= a;};     return val; };</code></p>
 </div>
 </div>
 </div><div style=display:none>
@@ -2904,32 +3039,14 @@ double hoover::A::power(int n){
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[6]:
+In&nbsp;[14]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="o">!</span>rm -r jedgar jehbuild build
+<div class="highlight"><pre><span class="o">!</span>rm -rf jedgar jehbuild build
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-rm: cannot remove ‘jedgar’: No such file or directory
-rm: cannot remove ‘jehbuild’: No such file or directory
-rm: cannot remove ‘build’: No such file or directory
-
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 

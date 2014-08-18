@@ -1,11 +1,8 @@
 package = 'jedgar'      # top-level python package name
-packagedir = 'jedgar'  # location of the python package
-sourcedir = 'jehsrc'    # location of C/C++ source
+packagedir = 'jedgar'   # location of the python package
 builddir = 'jehbuild'
 
 make_stlcontainers = False
 
-classes = [
-    ('A', 'hoover'),
-    ]
+classes = [('A', 'jehsrc/hoover.*')]
 
