@@ -1739,7 +1739,7 @@ Clifton Park, August 20th, 2014
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[1]:
+In&nbsp;[11]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -1754,6 +1754,7 @@ In&nbsp;[1]:
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="o">*</span>
 <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">htmltable</span>
 <span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="kn">from</span> <span class="nn">glob</span> <span class="kn">import</span> <span class="n">glob</span>
 </pre></div>
 
 </div>
@@ -2708,7 +2709,18 @@ Talkig 'Bout My Code Generation!
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Currently there is only one. This targets Python via Cython.</p>
+<p>Currently there are three code generators.</p>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The primary one is called <code>cythongen</code> and targets Python via Cython.</p>
 </div>
 </div>
 </div>
@@ -3012,7 +3024,7 @@ def rect_area(x0, y0, x1, y1):
 <div style="text-align:center"><h1>
 Example Time!
 </h1></div>
-<br/>
+hanged man <br/>
 <div style="text-align:center;">
 <img src="dinner.jpg" width="80%" />
 </div>
@@ -3267,21 +3279,18 @@ In&nbsp;[9]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="cythongen-can-get-much-more-complicated..."><code>cythongen</code> can get much more complicated...</h2>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
+<div style="text-align:center;"><h1>
+Idiom Proof
+</h1></div>
+The fool <br/>
 <div style="text-align:center;">
 <img src="cry_havoc.jpg" width="50%" />
 </div>
 </div>
 </div>
-</div></section><section>
+</div></section>
+    </section><section>
+    <section>
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3289,22 +3298,18 @@ In&nbsp;[9]:
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="function-pointer-callbacks">Function Pointer Callbacks</h2>
-<h3 id="twonums-struct-in-c">TwoNums Struct in C</h3>
-<pre><code>typedef struct TwoNums
+<h3 id="threenums-struct-in-c">ThreeNums Struct in C</h3>
+<pre class="sourceCode c"><code class="sourceCode c"><span class="kw">typedef</span> <span class="kw">struct</span> ThreeNums
 {
-  double a;
-  double b;
-  double (*op)(double, double);
-} TwoNums;</code></pre>
-<h3 id="sidecar">Sidecar</h3>
-<pre><code>mod = {&#39;TwoNums&#39;: {
-    &#39;extra&#39;: {
-        &#39;max_callbacks&#39;: 2,
-        &#39;pyx&#39;: &quot;&quot;&quot;
-    def call_from_c(self, x, y):
-        rtn = (&lt;c_pydevice.TwoNums *&gt; self._inst).op(&lt;double&gt; x, &lt;double&gt; y)
-        return float(rtn)
-        &quot;&quot;&quot;},},}</code></pre>
+  <span class="dt">double</span> a;
+  <span class="dt">double</span> b;
+  <span class="dt">double</span> c;
+  <span class="dt">double</span> (*op)(<span class="dt">double</span>, <span class="dt">double</span>, <span class="dt">double</span>);
+} ThreeNums;</code></pre>
+<h3 id="op-caller-in-c">Op Caller in C</h3>
+<pre class="sourceCode C"><code class="sourceCode c"><span class="dt">double</span> call_threenums_op_from_c(ThreeNums x) {
+  <span class="kw">return</span> x.op(x.a, x.b, x.c);
+}</code></pre>
 </div>
 </div>
 </div><div style=display:none>
@@ -3312,14 +3317,44 @@ In&nbsp;[9]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[10]:
+In&nbsp;[15]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">d</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s">&#39;/home/scopatz/xdress/tests/build/build/lib.linux-x86_64-2.7/&#39;</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">d</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">&#39;~/xdress/tests/cproj/install-*/lib*/*/site-packages&#39;</span><span class="p">))</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
 <span class="k">if</span> <span class="n">d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
     <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
-<span class="kn">import</span> <span class="nn">xdtest.pydevice</span> <span class="kn">as</span> <span class="nn">mod</span>
+<span class="kn">import</span> <span class="nn">cproj.pybasics</span> <span class="kn">as</span> <span class="nn">mod</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="function-pointer-callbacks">Function Pointer Callbacks</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[23]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">ThreeNums</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;a and b and c = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">b</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">c</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -3331,67 +3366,181 @@ In&nbsp;[10]:
 
 
 <div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_pyerr">
+<div class="output_subarea output_stream output_stdout output_text">
 <pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">ImportError</span>                               Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-10-00054b46a171&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">      2</span> <span class="ansigreen">if</span> d <span class="ansigreen">not</span> <span class="ansigreen">in</span> sys<span class="ansiyellow">.</span>path<span class="ansiyellow">:</span><span class="ansiyellow"></span>
-<span class="ansigreen">      3</span>     sys<span class="ansiyellow">.</span>path<span class="ansiyellow">.</span>insert<span class="ansiyellow">(</span><span class="ansicyan">0</span><span class="ansiyellow">,</span> d<span class="ansiyellow">)</span><span class="ansiyellow"></span>
-<span class="ansigreen">----&gt; 4</span><span class="ansiyellow"> </span><span class="ansigreen">import</span> xdtest<span class="ansiyellow">.</span>pydevice <span class="ansigreen">as</span> mod<span class="ansiyellow"></span>
+a and b and c =  5.0 10.0 15.0
 
-<span class="ansired">ImportError</span>: No module named &apos;xdtest&apos;</pre>
+</pre>
 </div>
 </div>
 
 </div>
 </div>
 
-</div>
-    </div></section><section>
+</div><div class="fragment">
     
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="function-pointer-callbacks">Function Pointer Callbacks</h2>
-</div>
-</div>
-</div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[24]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">x</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">TwoNums</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="k">print</span> <span class="s">&quot;a and b = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">a</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">b</span>
+<div class="highlight"><pre><span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span> <span class="o">+</span> <span class="n">k</span>
 
-<span class="n">f</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a_</span><span class="p">,</span> <span class="n">b_</span><span class="p">:</span> <span class="n">a_</span> <span class="o">+</span> <span class="n">b_</span>
-<span class="k">print</span> <span class="s">&quot;f&#39;s refcount before assignment: &quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">getrefcount</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;f&#39;s refcount before assignment: &quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">getrefcount</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
 <span class="n">x</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="n">f</span>
-<span class="k">print</span> <span class="s">&quot;f&#39;s refcount after assignment: &quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">getrefcount</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<span class="k">print</span> <span class="s">&quot;x.op = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">op</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;f&#39;s refcount after assignment: &quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">getrefcount</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;x.op = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">op</span><span class="p">)</span>
+</pre></div>
 
-<span class="c"># Test that function pointer in C is getting set properly</span>
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+f&apos;s refcount before assignment:  2
+f&apos;s refcount after assignment:  4
+x.op =  &lt;function &lt;lambda&gt; at 0x7fb0a09cb9d8&gt;
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[25]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="c"># Test that function pointer in C is getting set properly</span>
 <span class="n">x</span><span class="o">.</span><span class="n">_op</span> <span class="o">=</span> <span class="bp">None</span>
-<span class="k">print</span> <span class="s">&quot;x._op is None:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">_op</span> <span class="ow">is</span> <span class="bp">None</span>
-<span class="k">print</span> <span class="s">&quot;f&#39;s refcount after None assignment: &quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">getrefcount</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-<span class="k">print</span> <span class="s">&quot;x.op = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">op</span>
-
-<span class="n">v</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
-<span class="k">print</span> <span class="s">&quot;result of x.op(14, 16) = &quot;</span><span class="p">,</span> <span class="n">v</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">call_from_c</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
-<span class="k">print</span> <span class="s">&quot;result of x.call_from_c(14, 16) = &quot;</span><span class="p">,</span> <span class="n">v</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;x._op is None:&quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">_op</span> <span class="ow">is</span> <span class="bp">None</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;f&#39;s refcount after None assignment: &quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">getrefcount</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;x.op = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">op</span><span class="p">)</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-</div></section><section>
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+x._op is None: True
+f&apos;s refcount after None assignment:  3
+x.op =  &lt;cyfunction ThreeNums.__get__.&lt;locals&gt;.op_proxy at 0x7fb0a096d608&gt;
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="function-pointer-callbacks---from-c">Function Pointer Callbacks - From C</h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[37]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">x</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[37]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+48
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[38]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">mod</span><span class="o">.</span><span class="n">call_threenums_op_from_c</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[38]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+30.0
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    </div></section>
+    </section><section>
+    <section>
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -3405,66 +3554,253 @@ In&nbsp;[]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[28]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">x</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a_</span><span class="p">,</span> <span class="n">b_</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">a_</span> <span class="o">+</span> <span class="n">b_</span><span class="o">**</span><span class="mi">2</span>
-<span class="k">print</span> <span class="s">&quot;x.op = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">op</span>
-<span class="k">print</span> <span class="s">&quot;f&#39;s refcount after op re-assignment: &quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">getrefcount</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
-
-<span class="n">v</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
-<span class="k">print</span> <span class="s">&quot;result of x.op(14, 16) = &quot;</span><span class="p">,</span> <span class="n">v</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">call_from_c</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
-<span class="k">print</span> <span class="s">&quot;result of x.call_from_c(14, 16) = &quot;</span><span class="p">,</span> <span class="n">v</span>
+<div class="highlight"><pre><span class="n">x</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">k</span><span class="o">/</span><span class="mi">2</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;x.op = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">op</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;f&#39;s refcount after op re-assignment: &quot;</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">getrefcount</span><span class="p">(</span><span class="n">f</span><span class="p">))</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-</div></section><section>
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+x.op =  &lt;function &lt;lambda&gt; at 0x7fb0a814c6a8&gt;
+f&apos;s refcount after op re-assignment:  3
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[41]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">x</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[41]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+48
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[40]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">mod</span><span class="o">.</span><span class="n">call_threenums_op_from_c</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[40]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+30.0
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    </div></section>
+    </section><section>
+    <section>
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="function-pointer-callbacks">Function Pointer Callbacks</h2>
+<h2 id="function-pointer-callbacks---two-instances">Function Pointer Callbacks - Two Instances</h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[32]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="c"># test two instances</span>
-<span class="n">y</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">TwoNums</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">x</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a_</span><span class="p">,</span> <span class="n">b_</span><span class="p">:</span> <span class="n">a_</span> <span class="o">+</span> <span class="n">b_</span>
-<span class="k">print</span> <span class="s">&quot;x.op = &quot;</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">op</span>
-<span class="n">y</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">a_</span><span class="p">,</span> <span class="n">b_</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">a_</span> <span class="o">+</span> <span class="n">b_</span><span class="o">**</span><span class="mi">2</span>
-<span class="k">print</span> <span class="s">&quot;y.op = &quot;</span><span class="p">,</span> <span class="n">y</span><span class="o">.</span><span class="n">op</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
-<span class="k">print</span> <span class="s">&quot;result of x.op(14, 16) = &quot;</span><span class="p">,</span> <span class="n">v</span>
-<span class="n">v</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">call_from_c</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
-<span class="k">print</span> <span class="s">&quot;result of x.call_from_c(14, 16) = &quot;</span><span class="p">,</span> <span class="n">v</span>
+<div class="highlight"><pre><span class="n">y</span> <span class="o">=</span> <span class="n">mod</span><span class="o">.</span><span class="n">ThreeNums</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">15</span><span class="p">)</span>
+<span class="n">x</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">j</span> <span class="o">+</span> <span class="n">k</span>
+<span class="n">y</span><span class="o">.</span><span class="n">op</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">,</span> <span class="n">k</span><span class="p">:</span> <span class="mi">2</span><span class="o">*</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">k</span><span class="o">/</span><span class="mi">2</span>
 </pre></div>
 
 </div>
 </div>
 </div>
 
-</div></section><section>
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>
+-c:2: RuntimeWarning: Ran out of available callbacks for ThreeNums.op, overriding existing callback.
+-c:3: RuntimeWarning: Ran out of available callbacks for ThreeNums.op, overriding existing callback.
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[35]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">x</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[35]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+48
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[36]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">y</span><span class="o">.</span><span class="n">op</span><span class="p">(</span><span class="mi">14</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">18</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[36]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+293.0
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+    </div></section>
+    </section><section>
+    <section>
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="function-and-method-dispatch">Function and Method Dispatch</h2>
+<h2 id="function-and-method-overloading">Function and Method Overloading</h2>
+<p><strong>Example member function declaration:</strong></p>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> func();
+<span class="dt">int</span> func(<span class="dt">double</span> x, <span class="dt">int</span> y=<span class="dv">10</span>);
+<span class="dt">int</span> func(std::string x, <span class="dt">double</span> y=<span class="fl">10.0</span>);</code></pre>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="function-and-method-overloading">Function and Method Overloading</h2>
+<p><strong>Concrete wrappers:</strong></p>
 <pre><code>def _func_0():
     &quot;&quot;&quot;func()
     I am a weird function.&quot;&quot;&quot;
@@ -3486,9 +3822,21 @@ def _func_2(x, y=1.0e+1):
     cdef int rtnval
     x_bytes = x.encode()
     rtnval = cpp_reprocess.func(std_string(&lt;char *&gt; x_bytes), &lt;double&gt; y)
-    return int(rtnval)
-
-_func_0_argtypes = frozenset()
+    return int(rtnval)</code></pre>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="function-and-method-overloading">Function and Method Overloading</h2>
+<p><strong>Virtual table wrapper:</strong></p>
+<pre><code>_func_0_argtypes = frozenset()
 _func_1_argtypes = frozenset(((0, float), (1, int), (&quot;x&quot;, float), (&quot;y&quot;, int)))
 _func_2_argtypes = frozenset(((0, str), (1, float), (&quot;x&quot;, str), (&quot;y&quot;, float)))
 
