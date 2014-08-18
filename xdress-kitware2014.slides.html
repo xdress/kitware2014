@@ -2180,7 +2180,8 @@ Let's Talk About Parsers!
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="parsers-major-point">Parsers: Major Point!</h2>
+<h2 id="parsers---major-point">Parsers - Major Point!</h2>
+<br/>
 <div style="text-align:center">
 <strong>XDress only cares about APIs.</strong>
 </div>
@@ -2243,7 +2244,42 @@ Let's Talk About Parsers!
 </div>
 </div>
 </div>
-    </div><div class="fragment">
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="api-description-example">API Description Example</h2>
+<p>Code is generated from descriptions of API elements to produce idomatic Python wrappers.</p>
+<pre class="sourceCode python"><code class="sourceCode python">brienne_desc = {
+    <span class="st">&#39;name&#39;</span>: <span class="st">&#39;Brienne&#39;</span>,
+    <span class="co">&#39;parents&#39;</span>: [<span class="st">&#39;LordSelwyn&#39;</span>],
+    <span class="co">&#39;namespace&#39;</span>: <span class="st">&#39;westeros&#39;</span>,
+    <span class="co">&#39;attrs&#39;</span>: {<span class="st">&#39;moniker&#39;</span>: <span class="st">&#39;str&#39;</span>},
+    <span class="co">&#39;methods&#39;</span>: {
+        (<span class="st">&#39;Brienne&#39;</span>,): <span class="ot">None</span>,
+        (<span class="st">&#39;Brienne&#39;</span>, (<span class="st">&#39;monkier&#39;</span>, <span class="st">&#39;str&#39;</span>, <span class="st">&#39;&quot;Maid of Tarth&quot;&#39;</span>)): <span class="ot">None</span>,
+        (<span class="st">&#39;~Brienne&#39;</span>,): <span class="ot">None</span>, 
+        (<span class="st">&#39;attack&#39;</span>, (<span class="st">&#39;person&#39;</span>, (<span class="st">&#39;char&#39;</span> <span class="st">&#39;*&#39;</span>), (<span class="st">&#39;weapon_id&#39;</span>, <span class="st">&#39;i2&#39;</span>, <span class="dv">1</span>))): <span class="st">&#39;float32&#39;</span>,
+        },
+    <span class="co">&#39;docstrings&#39;</span>: {
+        <span class="st">&#39;class&#39;</span>: <span class="st">&quot;I am so tall!&quot;</span>,
+        <span class="co">&#39;attrs&#39;</span>: {
+            <span class="st">&#39;monkier&#39;</span>: <span class="st">&#39;extra name for character&#39;</span>,
+            },
+        <span class="co">&#39;methods&#39;</span>: {
+            <span class="st">&#39;attack&#39;</span>: <span class="st">&quot;Attack someone with a weapon and returns damage.&quot;</span>
+            },
+        },
+    <span class="co">&#39;extra&#39;</span>: {},
+    }</code></pre>
+</div>
+</div>
+</div><div class="fragment">
     
 <div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
@@ -2264,7 +2300,7 @@ Let's Talk About Parsers!
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="text-align:center"><h1>
-Stay Awake Durring Type Systems!
+Stay Awake For Type Theory!
 </h1></div>
 </div>
 </div>
@@ -2359,13 +2395,13 @@ Refinement Types
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[4]:
+In&nbsp;[13]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="kn">from</span> <span class="nn">xdress.types.system</span> <span class="kn">import</span> <span class="n">TypeSystem</span>
 <span class="n">ts</span> <span class="o">=</span> <span class="n">TypeSystem</span><span class="p">()</span>
-<span class="n">pprint</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">base_types</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">ts</span><span class="o">.</span><span class="n">base_types</span><span class="p">))</span>
 </pre></div>
 
 </div>
@@ -2379,26 +2415,7 @@ In&nbsp;[4]:
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-{&apos;bool&apos;,
- &apos;char&apos;,
- &apos;complex128&apos;,
- &apos;exception&apos;,
- &apos;file&apos;,
- &apos;float128&apos;,
- &apos;float32&apos;,
- &apos;float64&apos;,
- &apos;int128&apos;,
- &apos;int16&apos;,
- &apos;int32&apos;,
- &apos;int64&apos;,
- &apos;str&apos;,
- &apos;type&apos;,
- &apos;uchar&apos;,
- &apos;uint128&apos;,
- &apos;uint16&apos;,
- &apos;uint32&apos;,
- &apos;uint64&apos;,
- &apos;void&apos;}
+[&apos;bool&apos;, &apos;char&apos;, &apos;complex128&apos;, &apos;exception&apos;, &apos;file&apos;, &apos;float128&apos;, &apos;float32&apos;, &apos;float64&apos;, &apos;int128&apos;, &apos;int16&apos;, &apos;int32&apos;, &apos;int64&apos;, &apos;str&apos;, &apos;type&apos;, &apos;uchar&apos;, &apos;uint128&apos;, &apos;uint16&apos;, &apos;uint32&apos;, &apos;uint64&apos;, &apos;void&apos;]
 
 </pre>
 </div>
@@ -2447,7 +2464,7 @@ In&nbsp;[4]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[4]:
+In&nbsp;[3]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -2542,7 +2559,7 @@ In&nbsp;[4]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[5]:
+In&nbsp;[4]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -2572,7 +2589,7 @@ In&nbsp;[5]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[6]:
+In&nbsp;[5]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -2666,9 +2683,9 @@ In&nbsp;[6]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<div style="text-align:center;">
-<img src="dinner.jpg" width="80%" />
-</div>
+<div style="text-align:center"><h1>
+Talkig 'Bout My Code Generation!
+</h1></div>
 </div>
 </div>
 </div></section>
@@ -2680,51 +2697,179 @@ In&nbsp;[6]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="api-descriptions">API Descriptions</h2>
-<p>Code is generated from descriptions of API elements (variables, functions, and classes) to produce idomatic Python wrappers.</p>
+<h2 id="code-generation">Code Generation</h2>
+<p>After the AST has been turned into an API description, xdress can pass this to as many code generators as are supported.</p>
 </div>
 </div>
 </div><div class="fragment">
     
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
+<div class="cell border-box-sizing text_cell rendered">
 <div class="prompt input_prompt">
-In&nbsp;[7]:
 </div>
 <div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">brienne_desc</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s">&#39;name&#39;</span><span class="p">:</span> <span class="s">&#39;Brienne&#39;</span><span class="p">,</span>
-    <span class="s">&#39;parents&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;LordSelwyn&#39;</span><span class="p">],</span>
-    <span class="s">&#39;namespace&#39;</span><span class="p">:</span> <span class="s">&#39;westeros&#39;</span><span class="p">,</span>
-    <span class="s">&#39;attrs&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&#39;moniker&#39;</span><span class="p">:</span> <span class="s">&#39;str&#39;</span><span class="p">,</span>
-        <span class="p">},</span>
-    <span class="s">&#39;methods&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="p">(</span><span class="s">&#39;Brienne&#39;</span><span class="p">,):</span> <span class="bp">None</span><span class="p">,</span>
-        <span class="p">(</span><span class="s">&#39;Brienne&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;monkier&#39;</span><span class="p">,</span> <span class="s">&#39;str&#39;</span><span class="p">,</span> <span class="s">&#39;&quot;Maid of Tarth&quot;&#39;</span><span class="p">)):</span> <span class="bp">None</span><span class="p">,</span>
-        <span class="p">(</span><span class="s">&#39;~Brienne&#39;</span><span class="p">,):</span> <span class="bp">None</span><span class="p">,</span> 
-        <span class="p">(</span><span class="s">&#39;attack&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;person&#39;</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;char&#39;</span> <span class="s">&#39;*&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s">&#39;weapon_id&#39;</span><span class="p">,</span> <span class="s">&#39;i2&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">))):</span> <span class="s">&#39;float32&#39;</span><span class="p">,</span>
-        <span class="p">},</span>
-    <span class="s">&#39;docstrings&#39;</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s">&#39;class&#39;</span><span class="p">:</span> <span class="s">&quot;I am so tall!&quot;</span><span class="p">,</span>
-        <span class="s">&#39;attrs&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s">&#39;monkier&#39;</span><span class="p">:</span> <span class="s">&#39;extra name for character&#39;</span><span class="p">,</span>
-            <span class="p">},</span>
-        <span class="s">&#39;methods&#39;</span><span class="p">:</span> <span class="p">{</span>
-            <span class="s">&#39;attack&#39;</span><span class="p">:</span> <span class="s">&quot;Attack someone with a weapon and returns damage.&quot;</span>
-            <span class="p">},</span>
-        <span class="p">},</span>
-    <span class="s">&#39;extra&#39;</span><span class="p">:</span> <span class="p">{},</span>
-    <span class="p">}</span>
-</pre></div>
-
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Currently there is only one. This targets Python via Cython.</p>
 </div>
 </div>
 </div>
-
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><em>How many people have used Cython?</em></p>
+</div>
+</div>
 </div>
     </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="cython">Cython</h2>
+<p>Cython is great!</p>
+</div>
+</div>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is a superset language of Python that adds C-like features:</p>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Type declarations</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Pointers &amp; references</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>Removal of GIL, bounds checking, etc.</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<ul>
+<li>and more!</li>
+</ul>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Cython is compiled into non-idiomatic C or C++ code.</p>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>This is then compiled normally into a Python extension module.</p>
+</div>
+</div>
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="cython-example">Cython Example</h2>
+<pre class="cython"><code>cdef class Rectangle:
+    cdef int x0, y0
+    cdef int x1, y1
+    
+    def __init__(self, int x0, int y0, int x1, int y1):
+        self.x0 = x0; self.y0 = y0; self.x1 = x1; self.y1 = y1
+        
+    cpdef int area(self):
+        cdef int area
+        area = (self.x1 - self.x0) * (self.y1 - self.y0)
+        if area &lt; 0:
+            area = -area
+        return area
+
+def rect_area(x0, y0, x1, y1):
+    cdef Rectangle rect
+    rect = Rectangle(x0, y0, x1, y1)
+    return rect.area()</code></pre>
+</div>
+</div>
+</div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<div style="text-align:center"><h1>
+Example Time!
+</h1></div>
+<br/>
+<div style="text-align:center;">
+<img src="dinner.jpg" width="80%" />
+</div>
+</div>
+</div>
+</div></section>
     </section><section>
     <section>
     
@@ -2759,7 +2904,7 @@ double hoover::A::power(int n){
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[8]:
+In&nbsp;[6]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -2767,6 +2912,24 @@ In&nbsp;[8]:
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+rm: cannot remove ‘jedgar’: No such file or directory
+rm: cannot remove ‘jehbuild’: No such file or directory
+rm: cannot remove ‘build’: No such file or directory
+
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -2808,7 +2971,7 @@ classes = [
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[9]:
+In&nbsp;[7]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -2828,12 +2991,16 @@ python jeh_setup.py build &gt; /dev/null 2&gt;&amp;1
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>
-autoall: discovering API names
-autoall: no API names to discover!
-autodescribe: scraping C/C++ APIs from source
-autodescribe: describing A
-autodescribe: registering A
-cythongen: creating C/C++ API wrappers
+WARNING: DeprecationWarning: run control parameter &apos;sourcedir&apos; has been removed in favor of new apiname semantics
+
+</pre>
+</div>
+</div>
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>
+ERROR: no valid language was found.
 
 </pre>
 </div>
@@ -2895,7 +3062,7 @@ cdef class A:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[10]:
+In&nbsp;[8]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -2925,7 +3092,7 @@ In&nbsp;[10]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[11]:
+In&nbsp;[9]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -2944,16 +3111,20 @@ In&nbsp;[11]:
 <div class="output">
 
 
-<div class="output_area"><div class="prompt output_prompt">
-    Out[11]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_pyerr">
 <pre>
-9.999999999999999e+41
-</pre>
-</div>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">ImportError</span>                               Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-9-1320bea6e15f&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">----&gt; 1</span><span class="ansiyellow"> </span><span class="ansigreen">from</span> jedgar<span class="ansiyellow">.</span>hoover <span class="ansigreen">import</span> A<span class="ansiyellow"></span>
+<span class="ansigreen">      2</span> <span class="ansiyellow"></span>
+<span class="ansigreen">      3</span> a <span class="ansiyellow">=</span> A<span class="ansiyellow">(</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
+<span class="ansigreen">      4</span> a<span class="ansiyellow">.</span>a <span class="ansiyellow">=</span> <span class="ansicyan">10</span><span class="ansiyellow"></span>
+<span class="ansigreen">      5</span> a<span class="ansiyellow">.</span>power<span class="ansiyellow">(</span><span class="ansicyan">42</span><span class="ansiyellow">)</span><span class="ansiyellow"></span>
 
+<span class="ansired">ImportError</span>: No module named &apos;jedgar.hoover&apos;</pre>
+</div>
 </div>
 
 </div>
@@ -3013,7 +3184,7 @@ In&nbsp;[11]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[12]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3042,7 +3213,7 @@ In&nbsp;[12]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[13]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3071,30 +3242,6 @@ In&nbsp;[13]:
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-a and b =  5.0 10.0
-f&apos;s refcount before assignment:  2
-f&apos;s refcount after assignment:  4
-x.op =  &lt;function &lt;lambda&gt; at 0x3ca3668&gt;
-x._op is None: True
-f&apos;s refcount after None assignment:  3
-x.op =  &lt;cyfunction TwoNums.op.__get__.&lt;locals&gt;.op_proxy at 0x3acf410&gt;
-result of x.op(14, 16) =  30.0
-result of x.call_from_c(14, 16) =  30.0
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div></section><section>
     
 <div class="cell border-box-sizing text_cell rendered">
@@ -3109,7 +3256,7 @@ result of x.call_from_c(14, 16) =  30.0
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[14]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3127,25 +3274,6 @@ In&nbsp;[14]:
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-x.op =  &lt;function &lt;lambda&gt; at 0x3ca3758&gt;
-f&apos;s refcount after op re-assignment:  3
-result of x.op(14, 16) =  284
-result of x.call_from_c(14, 16) =  284.0
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div></section><section>
     
 <div class="cell border-box-sizing text_cell rendered">
@@ -3160,7 +3288,7 @@ result of x.call_from_c(14, 16) =  284.0
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[15]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3177,43 +3305,6 @@ In&nbsp;[15]:
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>
--c:3: RuntimeWarning: Ran out of available callbacks for TwoNums.op, overriding existing callback.
-
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-x.op =  &lt;function &lt;lambda&gt; at 0x3ca3848&gt;
-y.op =  &lt;function &lt;lambda&gt; at 0x3ca36e0&gt;
-result of x.op(14, 16) =  30
-result of x.call_from_c(14, 16) =  30.0
-
-</pre>
-</div>
-</div>
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stderr output_text">
-<pre>
--c:5: RuntimeWarning: Ran out of available callbacks for TwoNums.op, overriding existing callback.
-
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -3320,7 +3411,7 @@ def func(self, *args, **kwargs):
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[16]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3371,7 +3462,7 @@ In&nbsp;[16]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[17]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3388,7 +3479,7 @@ In&nbsp;[17]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[18]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3396,22 +3487,6 @@ In&nbsp;[18]:
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-[&apos;MapIntBool&apos;, &apos;MapIntChar&apos;, &apos;MapIntComplex&apos;, &apos;MapIntDouble&apos;, &apos;MapIntInt&apos;, &apos;MapIntMapIntBool&apos;, &apos;MapIntMapIntChar&apos;, &apos;MapIntMapIntDouble&apos;, &apos;MapIntMapIntVectorBool&apos;, &apos;MapIntMapIntVectorChar&apos;, &apos;MapIntMapIntVectorDouble&apos;, &apos;MapIntSetChar&apos;, &apos;MapIntSetInt&apos;, &apos;MapIntSetStr&apos;, &apos;MapIntSetUInt&apos;, &apos;MapIntStr&apos;, &apos;MapIntVectorBool&apos;, &apos;MapIntVectorChar&apos;, &apos;MapIntVectorDouble&apos;, &apos;MapIntVectorInt&apos;, &apos;MapIntVectorStr&apos;, &apos;MapIntVectorUInt&apos;, &apos;MapIntVectorVectorDouble&apos;, &apos;MapStrDouble&apos;, &apos;MapStrInt&apos;, &apos;MapStrStr&apos;, &apos;MapStrUInt&apos;, &apos;MapUIntDouble&apos;, &apos;MapUIntStr&apos;, &apos;MapUIntUInt&apos;]
-
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -3430,7 +3505,7 @@ In&nbsp;[18]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[19]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3443,23 +3518,6 @@ In&nbsp;[19]:
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-{u&apos;Joan&apos;: 42, u&apos;Leslie&apos;: 6}
-scores is mapping: True
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     </div>
 <div class="cell border-box-sizing text_cell rendered">
@@ -3475,7 +3533,7 @@ scores is mapping: True
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[20]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3484,22 +3542,6 @@ In&nbsp;[20]:
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-3
-
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -3521,7 +3563,7 @@ In&nbsp;[20]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[40]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3529,27 +3571,6 @@ In&nbsp;[40]:
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_text output_pyerr">
-<pre>
-<span class="ansired">---------------------------------------------------------------------------</span>
-<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
-<span class="ansigreen">&lt;ipython-input-40-117d2e157c41&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
-<span class="ansigreen">----&gt; 1</span><span class="ansiyellow"> </span>scores<span class="ansiyellow">[</span><span class="ansiblue">&quot;Hoover&quot;</span><span class="ansiyellow">]</span> <span class="ansiyellow">=</span> <span class="ansiyellow">[</span><span class="ansicyan">1.92e3</span><span class="ansiyellow">,</span> <span class="ansiblue">&quot;hell0&quot;</span><span class="ansiyellow">]</span><span class="ansiyellow"></span>
-
-<span class="ansigreen">/home/scopatz/xdress/tests/build/build/lib.linux-x86_64-2.7/xdtest/xdstlc.so</span> in <span class="ansicyan">xdtest.xdstlc._MapStrInt.__setitem__ (/home/scopatz/xdress/tests/build/xdtest/xdstlc.cxx:20723)</span><span class="ansiblue">()</span>
-
-<span class="ansired">TypeError</span>: an integer is required</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -3578,7 +3599,7 @@ In&nbsp;[40]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[25]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3587,23 +3608,6 @@ In&nbsp;[25]:
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-xd_double
-Is dtype? True
-
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -3623,7 +3627,7 @@ Is dtype? True
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[27]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3631,25 +3635,6 @@ In&nbsp;[27]:
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">
-    Out[27]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
-<pre>
-array([u&apos;Joan&apos;, u&apos;Hoover&apos;, u&apos;Mulan&apos;, u&apos;Leslie&apos;], dtype=&apos;xd_str&apos;)
-</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -3670,7 +3655,7 @@ array([u&apos;Joan&apos;, u&apos;Hoover&apos;, u&apos;Mulan&apos;, u&apos;Leslie
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[29]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3678,27 +3663,6 @@ In&nbsp;[29]:
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt output_prompt">
-    Out[29]:</div>
-
-
-<div class="output_text output_subarea output_pyout">
-<pre>
-array([array([ 42.,  65.]),
-       array([  6.00000000e+00,   2.80000000e+01,   4.96000000e+02,
-         8.12800000e+03])], dtype=&apos;xd_vector_double&apos;)
-</pre>
-</div>
-
-</div>
-
 </div>
 </div>
 
@@ -3721,7 +3685,7 @@ array([array([ 42.,  65.]),
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[34]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3734,23 +3698,6 @@ In&nbsp;[34]:
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-{18: {}, 42: {65: array([ True, False, False,  True], dtype=bool)}, 2040: {3: array([ True,  True], dtype=bool)}}
-Value is MapIntVectorBool? True
-
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -3771,7 +3718,7 @@ Value is MapIntVectorBool? True
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[46]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3871,7 +3818,7 @@ Wrap HDF5 - <a href="https://github.com/scopatz/cya">cya project</a>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[3]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -3882,38 +3829,12 @@ In&nbsp;[3]:
 </div>
 </div>
 
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area"><div class="prompt"></div>
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>
-cp -r ~/nbconvert/reveal . 
-rm -rf reveal/.git* 
-mkdir -p js 
-cp ~/nbconvert/js/mathjax-onload.js js
-cp classy.css reveal/css/theme/ 
-python ~/nbconvert/nbconvert.py -f reveal scopatz_scipy2013.ipynb 
-sed -i &apos;s:reveal/css/theme/simple.css:reveal/css/theme/classy.css:&apos; scopatz_scipy2013_slides.html 
-sed -i &apos;s:class=&quot;fragment&quot; class=&quot;text_cell_render:class=&quot;fragment text_cell_render:&apos; scopatz_scipy2013_slides.html 
-sed -i &apos;s/.rendered_html ul{list-style:disc;margin:0em 2em;}/.rendered_html ul{list-style:disc;margin:0em 2em;}/&apos; scopatz_scipy2013_slides.html 
-sed -i &apos;/&lt;\!-- Social buttons --&gt;/,/&lt;\!-- End of social buttons --&gt;/d&apos; scopatz_scipy2013_slides.html 
-sed -i &apos;s/background: #3F3F3F;/background: #4A363D;/&apos; reveal/lib/css/zenburn.css 
-
-</pre>
-</div>
-</div>
-
-</div>
-</div>
-
 </div>
     </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[22]:
+In&nbsp;[]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
