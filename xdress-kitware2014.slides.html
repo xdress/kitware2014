@@ -3936,14 +3936,85 @@ stlcontainers = [
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[44]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="kn">import</span> <span class="nn">xdtest.xdstlc</span> <span class="kn">as</span> <span class="nn">conts</span>
+<div class="highlight"><pre><span class="n">d</span> <span class="o">=</span> <span class="n">glob</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s">&#39;~/xdress/tests/cppproj/install-*/lib*/*/site-packages&#39;</span><span class="p">))</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">d</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">if</span> <span class="n">d</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="p">:</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+<span class="kn">import</span> <span class="nn">cppproj.stlc</span> <span class="kn">as</span> <span class="nn">conts</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+</div>
+    </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[47]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="k">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">([</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">conts</span><span class="p">)</span> <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;Map&#39;</span><span class="p">)]))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+[&apos;MapIntBool&apos;, &apos;MapIntChar&apos;, &apos;MapIntComplex&apos;, &apos;MapIntDouble&apos;, &apos;MapIntInt&apos;, &apos;MapIntMapIntBool&apos;, &apos;MapIntMapIntChar&apos;, &apos;MapIntMapIntDouble&apos;, &apos;MapIntMapIntVectorBool&apos;, &apos;MapIntMapIntVectorChar&apos;, &apos;MapIntMapIntVectorDouble&apos;, &apos;MapIntSetChar&apos;, &apos;MapIntSetInt&apos;, &apos;MapIntSetStr&apos;, &apos;MapIntSetUInt&apos;, &apos;MapIntStr&apos;, &apos;MapIntVectorBool&apos;, &apos;MapIntVectorChar&apos;, &apos;MapIntVectorDouble&apos;, &apos;MapIntVectorInt&apos;, &apos;MapIntVectorSetInt&apos;, &apos;MapIntVectorStr&apos;, &apos;MapIntVectorUInt&apos;, &apos;MapIntVectorVectorDouble&apos;, &apos;MapPairIntIntDouble&apos;, &apos;MapStrDouble&apos;, &apos;MapStrInt&apos;, &apos;MapStrStr&apos;, &apos;MapStrUInt&apos;, &apos;MapThreeNumsDouble&apos;, &apos;MapUIntDouble&apos;, &apos;MapUIntStr&apos;, &apos;MapUIntUInt&apos;]
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[48]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">scores</span> <span class="o">=</span> <span class="n">conts</span><span class="o">.</span><span class="n">MapStrInt</span><span class="p">({</span><span class="s">&#39;Joan&#39;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span> <span class="s">&#39;Leslie&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">})</span>
+<span class="k">print</span><span class="p">(</span><span class="n">scores</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;scores is mapping:&quot;</span><span class="p">,</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">MutableMapping</span><span class="p">))</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+{&apos;Joan&apos;: 42, &apos;Leslie&apos;: 6}
+scores is mapping: True
+
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -3953,69 +4024,31 @@ In&nbsp;[]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="k">print</span> <span class="p">[</span><span class="n">m</span> <span class="k">for</span> <span class="n">m</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">conts</span><span class="p">)</span> <span class="k">if</span> <span class="n">m</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s">&#39;Map&#39;</span><span class="p">)]</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-    </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><br /></p>
-</div>
-</div>
-</div><div class="fragment">
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="n">scores</span> <span class="o">=</span> <span class="n">conts</span><span class="o">.</span><span class="n">MapStrInt</span><span class="p">({</span><span class="s">&#39;Joan&#39;</span><span class="p">:</span> <span class="mi">42</span><span class="p">,</span> <span class="s">&#39;Leslie&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">})</span>
-<span class="k">print</span> <span class="n">scores</span>
-<span class="k">print</span> <span class="s">&quot;scores is mapping:&quot;</span><span class="p">,</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">MutableMapping</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div>
-    </div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><br /></p>
-</div>
-</div>
-</div><div class="fragment">
-    
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[49]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
 <div class="highlight"><pre><span class="n">scores</span><span class="p">[</span><span class="s">&#39;Leslie&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">14</span>
-<span class="k">print</span> <span class="n">scores</span><span class="p">[</span><span class="s">&#39;Joan&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">scores</span><span class="p">[</span><span class="s">&#39;Leslie&#39;</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="n">scores</span><span class="p">[</span><span class="s">&#39;Joan&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">scores</span><span class="p">[</span><span class="s">&#39;Leslie&#39;</span><span class="p">])</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+3.0
+
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -4037,7 +4070,7 @@ In&nbsp;[]:
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[50]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
@@ -4045,6 +4078,27 @@ In&nbsp;[]:
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_text output_pyerr">
+<pre>
+<span class="ansired">---------------------------------------------------------------------------</span>
+<span class="ansired">TypeError</span>                                 Traceback (most recent call last)
+<span class="ansigreen">&lt;ipython-input-50-117d2e157c41&gt;</span> in <span class="ansicyan">&lt;module&gt;</span><span class="ansiblue">()</span>
+<span class="ansigreen">----&gt; 1</span><span class="ansiyellow"> </span>scores<span class="ansiyellow">[</span><span class="ansiblue">&quot;Hoover&quot;</span><span class="ansiyellow">]</span> <span class="ansiyellow">=</span> <span class="ansiyellow">[</span><span class="ansicyan">1.92e3</span><span class="ansiyellow">,</span> <span class="ansiblue">&quot;hell0&quot;</span><span class="ansiyellow">]</span><span class="ansiyellow"></span>
+
+<span class="ansigreen">/home/scopatz/xdress/tests/cppproj/install-clang/lib/python3.4/site-packages/cppproj/stlc.cpython-34m.so</span> in <span class="ansicyan">cppproj.stlc._MapStrInt.__setitem__ (/home/scopatz/xdress/tests/cppproj/build/cppproj/stlc.cxx:23108)</span><span class="ansiblue">()</span>
+
+<span class="ansired">TypeError</span>: an integer is required</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -4057,7 +4111,7 @@ In&nbsp;[]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="stdvectort-wrappers-are-numpy-arrays"><code>std::vector&lt;T&gt;</code> Wrappers Are NumPy Arrays!</h2>
+<h2 id="stdvectort-wrappers-are-numpy-arrays"><code>std::vector&lt;T&gt;</code> Wrappers <em>are</em> NumPy Arrays!</h2>
 </div>
 </div>
 </div>
@@ -4066,46 +4120,23 @@ In&nbsp;[]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Vectors are wrapped by providing a 1D numpy view into the vector's memory with a custom dtype that represents the template type.</p>
+<p>Vectors are wrapped by providing a 1D numpy view into the vector's memory with a dtype that matches the template type.</p>
+<pre class="sourceCode cpp"><code class="sourceCode cpp">std::vector&lt;<span class="dt">double</span>&gt; func0(<span class="dt">double</span> x, std::vector&lt;<span class="dt">double</span>&gt; vec) {
+  std::vector&lt;<span class="dt">double</span>&gt; d (vec.size(), <span class="fl">0.0</span>);
+  <span class="kw">return</span> d;
+};</code></pre>
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre><span class="k">print</span> <span class="n">conts</span><span class="o">.</span><span class="n">xd_double</span><span class="o">.</span><span class="n">name</span>
-<span class="k">print</span> <span class="s">&quot;Is dtype?&quot;</span><span class="p">,</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">conts</span><span class="o">.</span><span class="n">xd_double</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div><div class="fragment">
-    
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><br /><strong>Numpy array of <code>std::string</code>s</strong></p>
-</div>
-</div>
-</div>
-    </div><div class="fragment">
+</div><div style=display:none>
     
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[53]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s">&quot;Joan&quot;</span><span class="p">,</span> <span class="s">&#39;Hoover&#39;</span><span class="p">,</span> <span class="s">&#39;Mulan&#39;</span><span class="p">,</span> <span class="s">&#39;Leslie&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">conts</span><span class="o">.</span><span class="n">xd_str</span><span class="p">)</span>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">cppproj.basics</span> <span class="kn">import</span> <span class="n">a_better_name</span> <span class="k">as</span> <span class="n">func0</span>
 </pre></div>
 
 </div>
@@ -4115,28 +4146,37 @@ In&nbsp;[]:
 </div>
     </div><div class="fragment">
     
-<div class="cell border-box-sizing text_cell rendered">
-<div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><br /><strong>And now for something truly evil...</strong></p>
-</div>
-</div>
-</div>
-    </div><div class="fragment">
-    
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[54]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">65</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">496</span><span class="p">,</span> <span class="mi">8128</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">conts</span><span class="o">.</span><span class="n">xd_vector_double</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">6</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">496</span><span class="p">,</span> <span class="mi">8128</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s">&#39;f8&#39;</span><span class="p">)</span>
+<span class="n">func0</span><span class="p">(</span><span class="mf">42.0</span><span class="p">,</span> <span class="n">arr</span><span class="p">)</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[54]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+array([ 0.,  0.,  0.,  0.])
+</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -4150,28 +4190,173 @@ In&nbsp;[]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="c-standard-library-container-wrappers">C++ Standard Library Container Wrappers</h2>
-<p>All of these wrappers are composable with other types, including classes and structs wrapped from <code>cythongen</code>.</p>
-<p><br /><br /></p>
+<h2 id="dtypes">Dtypes</h2>
+<p>This works by generating custom dtypes for all desired types - including user created templated classes!</p>
+</div>
+</div>
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<pre class="sourceCode python"><code class="sourceCode python">dtypes = [
+    (<span class="st">&#39;map&#39;</span>, <span class="st">&#39;str&#39;</span>, <span class="st">&#39;int&#39;</span>),
+    (<span class="st">&#39;set&#39;</span>, <span class="st">&#39;int&#39;</span>),
+    <span class="co">&#39;float32&#39;</span>,
+    (<span class="st">&#39;vector&#39;</span>, <span class="st">&#39;int32&#39;</span>),
+    <span class="co">&#39;ThreeNums&#39;</span>,
+    ]</code></pre>
+</div>
+</div>
+</div>
+    </div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>(Ufuncs have not been implemented yet.)</p>
+</div>
+</div>
+</div>
+    </div></section>
+    </section><section>
+    <section>
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="dtypes">Dtypes</h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[55]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="n">yolo</span> <span class="o">=</span> <span class="n">conts</span><span class="o">.</span><span class="n">MapIntMapIntVectorBool</span><span class="p">({</span>
-    <span class="mi">42</span><span class="p">:</span> <span class="p">{</span><span class="mi">65</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">]},</span> 
-    <span class="mi">18</span><span class="p">:</span> <span class="p">{},</span> 
-    <span class="mi">2040</span><span class="p">:</span> <span class="p">{</span><span class="mi">3</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;yes&quot;</span><span class="p">,</span> <span class="s">&quot;no&quot;</span><span class="p">]}})</span>
-<span class="k">print</span> <span class="n">yolo</span>
-<span class="k">print</span> <span class="s">&quot;Value is MapIntVectorBool?&quot;</span><span class="p">,</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">yolo</span><span class="p">[</span><span class="mi">42</span><span class="p">],</span> <span class="n">conts</span><span class="o">.</span><span class="n">MapIntVectorBool</span><span class="p">)</span>
+<div class="highlight"><pre><span class="kn">from</span> <span class="nn">cppproj</span> <span class="kn">import</span> <span class="n">dt</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">xd_double</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Is dtype?&quot;</span><span class="p">,</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dt</span><span class="o">.</span><span class="n">xd_double</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">dtype</span><span class="p">))</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+xd_double
+Is dtype? True
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>Numpy array of <code>std::string</code>s</strong></p>
+</div>
+</div>
+</div>
+    </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[57]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="s">&quot;Joan&quot;</span><span class="p">,</span> <span class="s">&#39;Hoover&#39;</span><span class="p">,</span> <span class="s">&#39;Mulan&#39;</span><span class="p">,</span> <span class="s">&#39;Leslie&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">xd_str</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[57]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+array([&apos;Joan&apos;, &apos;Hoover&apos;, &apos;Mulan&apos;, &apos;Leslie&apos;], dtype=&apos;xd_str&apos;)
+</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div><div class="fragment">
+    
+<div class="cell border-box-sizing text_cell rendered">
+<div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><strong>And now for something truly evil...</strong></p>
+</div>
+</div>
+</div>
+    </div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">
+In&nbsp;[58]:
+</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class="highlight"><pre><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([[</span><span class="mi">42</span><span class="p">,</span> <span class="mi">65</span><span class="p">],</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">496</span><span class="p">,</span> <span class="mi">8128</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">dt</span><span class="o">.</span><span class="n">xd_vector_double</span><span class="p">)</span>
+</pre></div>
+
+</div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt output_prompt">
+    Out[58]:</div>
+
+
+<div class="output_text output_subarea output_pyout">
+<pre>
+array([array([ 42.,  65.]),
+       array([  6.00000000e+00,   2.80000000e+01,   4.96000000e+02,
+         8.12800000e+03])], dtype=&apos;xd_vector_double&apos;)
+</pre>
+</div>
+
+</div>
+
 </div>
 </div>
 
@@ -4184,47 +4369,44 @@ In&nbsp;[]:
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="plugins">Plugins</h2>
-<p>XDress has a plugin architeture which makes writing your own code generators super easy!</p>
+<h2 id="c-standard-library-container-wrappers">C++ Standard Library Container Wrappers</h2>
+<p>All of these wrappers are composable with other types, including classes and structs wrapped from <code>cythongen</code>.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">
-In&nbsp;[]:
+In&nbsp;[61]:
 </div>
 <div class="inner_cell">
     <div class="input_area">
-<div class="highlight"><pre><span class="kn">from</span> <span class="nn">xdress.plugins</span> <span class="kn">import</span> <span class="n">Plugin</span>
-
-<span class="k">class</span> <span class="nc">XDressPlugin</span><span class="p">(</span><span class="n">Plugin</span><span class="p">):</span>
-    <span class="n">requires</span> <span class="o">=</span> <span class="p">(</span><span class="s">&#39;xdress.base&#39;</span><span class="p">,)</span>
-
-    <span class="n">defaultrc</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;choices&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s">&#39;J. Edgar Hoover&#39;</span><span class="p">,</span> <span class="s">&#39;Hua Mulan&#39;</span><span class="p">,</span> <span class="s">&#39;Leslie&#39;</span><span class="p">],</span>
-                 <span class="s">&#39;answer&#39;</span><span class="p">:</span> <span class="s">&#39;Joan of Arc&#39;</span><span class="p">,}</span>
-        
-    <span class="k">def</span> <span class="nf">update_argparser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">parser</span><span class="p">):</span>
-        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&#39;-c&#39;</span><span class="p">,</span> <span class="s">&#39;--choices&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&#39;store&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">&#39;choices&#39;</span><span class="p">,</span>
-                            <span class="n">nargs</span><span class="o">=</span><span class="s">&quot;+&quot;</span><span class="p">,</span> <span class="n">help</span><span class="o">=</span><span class="s">&quot;famous people chocies&quot;</span><span class="p">)</span>
-        <span class="n">parser</span><span class="o">.</span><span class="n">add_argument</span><span class="p">(</span><span class="s">&#39;-a&#39;</span><span class="p">,</span> <span class="s">&#39;--answer&#39;</span><span class="p">,</span> <span class="n">action</span><span class="o">=</span><span class="s">&#39;store&#39;</span><span class="p">,</span> <span class="n">dest</span><span class="o">=</span><span class="s">&#39;answer&#39;</span><span class="p">,</span>
-                            <span class="n">help</span><span class="o">=</span><span class="s">&quot;person who was executed&quot;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">setup</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rc</span><span class="p">):</span>
-        <span class="k">if</span> <span class="s">&#39;Joan of Arc&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">rc</span><span class="o">.</span><span class="n">choices</span><span class="p">:</span>
-            <span class="n">rc</span><span class="o">.</span><span class="n">choices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="s">&#39;Joan of Arc&#39;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rc</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">rc</span><span class="o">.</span><span class="n">answer</span> <span class="o">==</span> <span class="s">&#39;Joan of Arc&#39;</span><span class="p">:</span>
-            <span class="k">print</span><span class="p">(</span><span class="s">&#39;Joan has met an untimely demise!&#39;</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s">&#39;Joan of Arc was executed, not &#39;</span> <span class="o">+</span> <span class="n">rc</span><span class="o">.</span><span class="n">answer</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">report_debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rc</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s">&quot;the possible choices were &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">rc</span><span class="o">.</span><span class="n">choices</span><span class="p">)</span>
+<div class="highlight"><pre><span class="n">yolo</span> <span class="o">=</span> <span class="n">conts</span><span class="o">.</span><span class="n">MapIntMapIntVectorBool</span><span class="p">({</span>
+    <span class="mi">42</span><span class="p">:</span> <span class="p">{</span><span class="mi">65</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="bp">False</span><span class="p">,</span> <span class="bp">True</span><span class="p">]},</span> 
+    <span class="mi">18</span><span class="p">:</span> <span class="p">{},</span> 
+    <span class="mi">2040</span><span class="p">:</span> <span class="p">{</span><span class="mi">3</span><span class="p">:</span> <span class="p">[</span><span class="s">&quot;yes&quot;</span><span class="p">,</span> <span class="s">&quot;no&quot;</span><span class="p">]}})</span>
+<span class="k">print</span><span class="p">(</span><span class="n">yolo</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">&quot;Value is MapIntVectorBool?&quot;</span><span class="p">,</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">yolo</span><span class="p">[</span><span class="mi">42</span><span class="p">],</span> <span class="n">conts</span><span class="o">.</span><span class="n">MapIntVectorBool</span><span class="p">))</span>
 </pre></div>
 
 </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area"><div class="prompt"></div>
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+{18: {}, 42: {65: array([ True, False, False,  True], dtype=bool)}, 2040: {3: array([ True,  True], dtype=bool)}}
+Value is MapIntVectorBool? True
+
+</pre>
+</div>
+</div>
+
 </div>
 </div>
 
@@ -4239,7 +4421,7 @@ In&nbsp;[]:
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="cool-ideas">Cool Ideas</h2>
 <div style="text-align:center;"><h3>
-Fix/Rewrite the Clang AST Python Bindings
+Operator Overloading
 </h3></div>
 <p><br/></p>
 </div>
@@ -4252,7 +4434,7 @@ Fix/Rewrite the Clang AST Python Bindings
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="text-align:center;"><h3>
-Create a Better (Than RelaxNG) Validation Engine
+Ctypes, Boost, Julia, and Other Frontends
 </h3></div>
 <p><br/></p>
 </div>
@@ -4266,7 +4448,7 @@ Create a Better (Than RelaxNG) Validation Engine
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <div style="text-align:center;"><h3>
-Wrap HDF5 - <a href="https://github.com/scopatz/cya">cya project</a>
+Fortran Support
 </h3></div>
 <p><br/></p>
 </div>
@@ -4304,22 +4486,7 @@ In&nbsp;[]:
 </div>
 
 </div>
-    </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">
-In&nbsp;[]:
-</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class="highlight"><pre> 
-</pre></div>
-
-</div>
-</div>
-</div>
-
-</div></section>
+    </div></section>
     </section>
 </div>
 </div>
