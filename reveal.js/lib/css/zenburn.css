@@ -65,7 +65,8 @@ pre .apache .tag,
 pre .nginx .built_in,
 pre .tex .command,
 pre .input_number {
-    color: #efef8f;
+    /*color: #efef8f;*/
+    color: #8F8FEF;
 }
 
 pre .dos .winutils,
